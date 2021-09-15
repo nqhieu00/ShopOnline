@@ -12,4 +12,10 @@
 		<pattern>/*</pattern>
 	</decorator>
 	
+	<decorator name="login" page="login.jsp">
+		<pattern>/admin/login</pattern>
+		<pattern>/admin/logout</pattern>
+	</decorator>
+	
+	
 </decorators>

@@ -8,6 +8,7 @@ import javax.inject.Inject;
 import com.ShopOnline.dao.ICategoryDao;
 import com.ShopOnline.dao.impl.CategoryDao;
 import com.ShopOnline.model.CategoryModel;
+import com.ShopOnline.paging.Pageable;
 import com.ShopOnline.service.ICategoryService;
 import com.google.protobuf.Empty;
 
@@ -17,9 +18,9 @@ public class CategoryService implements ICategoryService {
 	private ICategoryDao categoryDao;
 
 	@Override
-	public List<CategoryModel> findAll() {
+	public List<CategoryModel> findAll(Pageable pageable) {
 		// TODO Auto-generated method stub
-		return categoryDao.findAll();
+		return categoryDao.findAll(pageable);
 	}
 
 	@Override
@@ -31,18 +32,18 @@ public class CategoryService implements ICategoryService {
 
 	@Override
 	public CategoryModel update(CategoryModel newCategoryModel) {
-
-		CategoryModel oldCategoryModel = categoryDao.findOne(newCategoryModel.getId());
-
-		setCategory(newCategoryModel, oldCategoryModel);
-
+		
+		if(categoryDao.findOne(newCategoryModel.getId())!=null){
+			CategoryModel oldCategoryModel = categoryDao.findOne(newCategoryModel.getId());
+			setCategory(newCategoryModel, oldCategoryModel);
+		}
 		categoryDao.update(newCategoryModel);
 		return categoryDao.findOne(newCategoryModel.getId());
 
 	}
 
 	private void setCategory(CategoryModel newCategoryModel, CategoryModel oldCategoryModel) {
-		if (newCategoryModel.getParentId() == 0) {
+		if (newCategoryModel.getParentId() == null) {
 			newCategoryModel.setParentId(oldCategoryModel.getParentId());
 		} 
 		if (newCategoryModel.getTitle() == null) {
@@ -66,6 +67,12 @@ public class CategoryService implements ICategoryService {
 			categoryDao.delete(id);
 		}
 
+	}
+
+	@Override
+	public int count() {
+		
+		return categoryDao.count();
 	}
 
 }

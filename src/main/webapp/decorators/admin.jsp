@@ -12,6 +12,12 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
 
+
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+<script
+	src="<c:url value='/template/pagination/jquery.twbsPagination.js'/>"
+	type="text/javascript"></script>
 <!-- bootstrap & fontawesome -->
 <link rel="stylesheet"
 	href="<c:url value='/template/admin/assets/css/bootstrap.min.css'/>" />
@@ -32,6 +38,8 @@
 
 <script
 	src="<c:url value='/template/admin/assets/js/ace-extra.min.js'/>"></script>
+	 
+   
 
 </head>
 
@@ -47,9 +55,12 @@
 		</script>
 
 		<%@ include file="/common/admin/menu.jsp"%>
+		
+	
 
-		<dec:body/>
+		
 		<!-- /.main-content -->
+		<dec:body/>
 		<%@ include file="/common/admin/footer.jsp"%>
 
 		<a href="#" id="btn-scroll-up"
@@ -57,49 +68,25 @@
 			class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>
 		</a>
 	</div>
-	<!-- /.main-container -->
-
-	<!-- basic scripts -->
-
-	<!--[if !IE]> -->
 	<script
 		src="<c:url value='/template/admin/assets/js/jquery.2.1.1.min.js'/>"></script>
 
-	<!-- <![endif]-->
-
-	<!--[if IE]>
-<script src="assets/js/jquery.1.11.1.min.js"></script>
-<![endif]-->
-
-	<!--[if !IE]> -->
 	<script type="text/javascript">
 		window.jQuery
 				|| document
 						.write("<script src='/template/admin/assets/js/jquery.min.js>>"
-								+ "<"+"/script>");
+								+ "<"+"/script>")
 	</script>
 
-	<!-- <![endif]-->
-
-	<!--[if IE]>
-<script type="text/javascript">
- window.jQuery || document.write("<script src='assets/js/jquery1x.min.js'>"+"<"+"/script>");
-</script>
-<![endif]-->
 	<script type="text/javascript">
 		if ('ontouchstart' in document.documentElement)
-			document
-					.write("<script src='/template/admin/assets/js/jquery.mobile.custom.min.js'>"
-							+ "<"+"/script>");
+			document.write("<script src='/template/admin/assets/js/jquery.mobile.custom.min.js'>"
+					+ "<"+"/script>")
 	</script>
+
 	<script
 		src="<c:url value='/template/admin/assets/js/bootstrap.min.js'/>"></script>
 
-	<!-- page specific plugin scripts -->
-
-	<!--[if lte IE 8]>
-		  <script src="assets/js/excanvas.min.js"></script>
-		<![endif]-->
 	<script
 		src="<c:url value='/template/admin/assets/js/jquery-ui.custom.min.js'/>"></script>
 	<script

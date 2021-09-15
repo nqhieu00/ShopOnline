@@ -152,7 +152,7 @@
 				<li class="light-blue"><a data-toggle="dropdown" href="#"
 					class="dropdown-toggle"> <img class="nav-user-photo"
 						src="<c:url value='/template/admin/assets/avatars/user.jpg'/>" alt="Jason's Photo" /> <span
-						class="user-info"> <small>Welcome,</small> Jason
+						class="user-info"> <small>Welcome,${USERMODEL.firstName} ${USERMODEL.lastName}</small> 
 					</span> <i class="ace-icon fa fa-caret-down"></i>
 				</a>
 
@@ -168,7 +168,7 @@
 
 						<li class="divider"></li>
 
-						<li><a href="#"> <i class="ace-icon fa fa-power-off"></i>
+						<li><a href="<c:url value='/admin/logout'/>"> <i class="ace-icon fa fa-power-off"></i>
 								Logout
 						</a></li>
 					</ul></li>

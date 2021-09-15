@@ -16,6 +16,7 @@ import com.ShopOnline.service.IUserService;
 import com.ShopOnline.service.impl.UserService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mysql.cj.util.Util;
+
 @WebServlet(urlPatterns = "/api-admin-user")
 public class UserAPI extends HttpServlet {
 
@@ -23,27 +24,42 @@ public class UserAPI extends HttpServlet {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
-	@Inject IUserService UserService;
+
+	@Inject
+	IUserService UserService;
+
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.setCharacterEncoding("UTF-8");
 		resp.setContentType("application/json");
-		UserModel user=HttpUtil.of(req.getReader()).toModel(UserModel.class);
-		user=UserService.insert(user);
-		ObjectMapper objectMapper=new ObjectMapper();
+		UserModel user = HttpUtil.of(req.getReader()).toModel(UserModel.class);
+		user = UserService.insert(user);
+		ObjectMapper objectMapper = new ObjectMapper();
 		objectMapper.writeValue(resp.getOutputStream(), user);
-		
+
 	}
+
 	@Override
 	protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		req.setCharacterEncoding("UTF-8");
 		resp.setContentType("application/json");
-		Long[] ids =HttpUtil.of(req.getReader()).getIds();
+		Long[] ids = HttpUtil.of(req.getReader()).getIds();
 		UserService.delete(ids);
-		ObjectMapper objectMapper=new ObjectMapper();
+		ObjectMapper objectMapper = new ObjectMapper();
 		objectMapper.writeValue(resp.getOutputStream(), "{}");
+	}
+
+	@Override
+	protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		req.setCharacterEncoding("UTF-8");
+		resp.setContentType("application/json");
+		UserModel user = HttpUtil.of(req.getReader()).toModel(UserModel.class);
+		user = UserService.update(user);
+		ObjectMapper objectMapper = new ObjectMapper();
+		objectMapper.writeValue(resp.getOutputStream(), user==null ? "{}" : user);
+
 	}
 
 }

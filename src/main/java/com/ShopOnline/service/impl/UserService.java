@@ -1,13 +1,15 @@
 package com.ShopOnline.service.impl;
 
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
 import java.sql.Timestamp;
-import java.util.Date;
 import java.util.List;
 
 import javax.inject.Inject;
 
+import org.bouncycastle.util.encoders.Hex;
+
 import com.ShopOnline.dao.IUserDao;
-import com.ShopOnline.model.CategoryModel;
 import com.ShopOnline.model.UserModel;
 import com.ShopOnline.service.IUserService;
 
@@ -33,15 +35,34 @@ public class UserService implements IUserService {
 		// TODO Auto-generated method stub
 		Timestamp timestamp=new Timestamp(System.currentTimeMillis());
 		model.setRegisteredAt(timestamp);
+		setPasswordHash(model);
 		Long id = userDao.insert(model);
 		return findOne(id);
 	}
 
+	private void setPasswordHash(UserModel model) {
+		String originalString=model.getPassword();
+		String sha256hex="";
+		try {
+			MessageDigest digest = MessageDigest.getInstance("SHA-256");
+			byte[] hash = digest.digest(originalString.getBytes(StandardCharsets.UTF_8));
+			sha256hex = new String(Hex.encode(hash));
+			model.setPasswordHash(sha256hex);
+		} catch (Exception e) {
+			
+		}
+		
+	}
+
 	@Override
 	public UserModel update(UserModel newUserModel) {
+		
+		if(findOne(newUserModel.getId())!= null){
+			UserModel oldUserModel = findOne(newUserModel.getId());
+			setUserModel(newUserModel, oldUserModel);
+		}
+		setPasswordHash(newUserModel);
 		userDao.update(newUserModel);
-		UserModel oldUserModel = findOne(newUserModel.getId());
-		setUserModel(newUserModel, oldUserModel);
 		return findOne(newUserModel.getId());
 
 	}
@@ -62,13 +83,13 @@ public class UserService implements IUserService {
 		if (newUserModel.getEmail() == null) {
 			newUserModel.setEmail(oldUserModel.getEmail());
 		}
-		if (newUserModel.getPasswordHash() == null) {
-			newUserModel.setPasswordHash(oldUserModel.getPasswordHash());
+		if (newUserModel.getPassword() == null) {
+			newUserModel.setPassword(oldUserModel.getPassword());
 		}
-		if (newUserModel.getAdmin() == 0) {
+		if (newUserModel.getAdmin() == null) {
 			newUserModel.setAdmin(oldUserModel.getAdmin());
 		}
-		if (newUserModel.getVendor() == 0) {
+		if (newUserModel.getVendor() == null) {
 			newUserModel.setVendor(oldUserModel.getVendor());
 		}
 		if (newUserModel.getLastLogin() == null) {
@@ -93,6 +114,11 @@ public class UserService implements IUserService {
 		for (Long id : userId) {
 			userDao.delete(id);
 		}
+	}
+
+	@Override
+	public UserModel findByUserNameAndPasswordHash(String userName, String passwordHash) {
+		return userDao.findByUserNameAndPasswordHash(userName, passwordHash);
 	}
 
 }

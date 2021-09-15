@@ -10,13 +10,18 @@
 
 <title><dec:title default="Trang chu"/></title>
 <!-- Favicon-->
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+<script
+	src="<c:url value='/template/pagination/jquery.twbsPagination.js'/>"
+	type="text/javascript"></script>
 <link rel="icon" type="image/x-icon" href="<c:url value='/template/web/assets/favicon.ico' />" />
 <!-- Bootstrap icons-->
 <link
 	href="<c:url value='https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"
 	rel="stylesheet' />"  />
 <!-- Core theme CSS (includes Bootstrap)-->
-<link href="<c:url value='/template/web/css/styles.css" rel="stylesheet'/>" />
+<link href="<c:url value='/template/web/css/styles.css'/>" rel="stylesheet"/>
 </head>
 <body>
 	<%@ include file="/common/web/header.jsp" %>
@@ -27,5 +32,6 @@
 	<script src="<c:url value='https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js'/>"></script>
         <!-- Core theme JS-->
     <script src="<c:url value='/template/web/js/scripts.js'/>"></script>
+  
 </body>
 </html>

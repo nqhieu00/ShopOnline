@@ -1,8 +1,8 @@
 package com.ShopOnline.model;
 
-public class CategoryModel {
+public class CategoryModel extends AbstractModel<CategoryModel> {
 	private long id;
-	private long parentId;
+	private Long parentId;
 	private String title;
 	private String metaTitle;
 	private String slug;
@@ -14,7 +14,7 @@ public class CategoryModel {
 	}
 
 
-	public CategoryModel(int id, int parentId, String title, String metaTitle, String slug, String content) {
+	public CategoryModel(Long id, Long parentId, String title, String metaTitle, String slug, String content) {
 	
 		this.id = id;
 		this.parentId = parentId;
@@ -35,12 +35,12 @@ public class CategoryModel {
 	}
 
 
-	public long getParentId() {
+	public Long getParentId() {
 		return parentId;
 	}
 
 
-	public void setParentId(long parentId) {
+	public void setParentId(Long parentId) {
 		this.parentId = parentId;
 	}
 

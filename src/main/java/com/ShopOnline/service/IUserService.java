@@ -8,6 +8,7 @@ import com.ShopOnline.model.UserModel;
 public interface IUserService {
 	
 	UserModel findOne(Long userId);
+	UserModel findByUserNameAndPasswordHash(String userName,String passwordHash);
 	List<UserModel> findAll();
 	UserModel insert(UserModel model);
 	UserModel update(UserModel userModel);

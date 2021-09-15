@@ -4,32 +4,35 @@ import java.sql.Timestamp;
 
 public class ProductModel {
 	
-	private long id;
-	private long userId;
+	private Long id;
+	private Long userId;
 	private String title;
 	private String metaTitle;
 	private String slug;
 	private String summary;
-	private int type;
+	private Integer type;
 	private String sku;
 	private float price;
 	private float discount;
-	private float quantily;
-	private int shop;
-	private Timestamp createAt;
-	private Timestamp updateAt;
-	private Timestamp publisheAt;
+	private float quantity;
+	private Integer shop;
+	private Timestamp createdAt;
+	private Timestamp updatedAt;
+	private Timestamp publishedAt;
 	private Timestamp startsAt;
 	private Timestamp endsAt;
 	private String content;
+	private String thumbnail;
 	
 	
 	public ProductModel() {
 		// TODO Auto-generated constructor stub
 	}
-	public ProductModel(int id, int userId, String title, String metaTitle, String slug, String summary, int type,
-			String sku, float price, float discount, float quantily, int shop, Timestamp createAt, Timestamp updateAt,
-			Timestamp publisheAt, Timestamp startsAt, Timestamp endsAt, String content) {
+
+
+	public ProductModel(Long id, Long userId, String title, String metaTitle, String slug, String summary, int type,
+			String sku, float price, float discount, float quantily, int shop, Timestamp createdAt, Timestamp updatedAt,
+			Timestamp publishedAt, Timestamp startsAt, Timestamp endsAt, String content,String thumbnail) {
 		
 		this.id = id;
 		this.userId = userId;
@@ -41,122 +44,205 @@ public class ProductModel {
 		this.sku = sku;
 		this.price = price;
 		this.discount = discount;
-		this.quantily = quantily;
+		this.quantity = quantily;
 		this.shop = shop;
-		this.createAt = createAt;
-		this.updateAt = updateAt;
-		this.publisheAt = publisheAt;
+		this.createdAt = createdAt;
+		this.updatedAt = updatedAt;
+		this.publishedAt = publishedAt;
 		this.startsAt = startsAt;
 		this.endsAt = endsAt;
 		this.content = content;
+		this.thumbnail=thumbnail;
 	}
-	public long getId() {
+
+
+	public Long getId() {
 		return id;
 	}
-	public void setId(long id) {
+
+
+	public void setId(Long id) {
 		this.id = id;
 	}
-	public long getUserId() {
+
+
+	public Long getUserId() {
 		return userId;
 	}
-	public void setUserId(long userId) {
+
+
+	public void setUserId(Long userId) {
 		this.userId = userId;
 	}
+
+
 	public String getTitle() {
 		return title;
 	}
+
+
 	public void setTitle(String title) {
 		this.title = title;
 	}
+
+
 	public String getMetaTitle() {
 		return metaTitle;
 	}
+
+
 	public void setMetaTitle(String metaTitle) {
 		this.metaTitle = metaTitle;
 	}
+
+
 	public String getSlug() {
 		return slug;
 	}
+
+
 	public void setSlug(String slug) {
 		this.slug = slug;
 	}
+
+
 	public String getSummary() {
 		return summary;
 	}
+
+
 	public void setSummary(String summary) {
 		this.summary = summary;
 	}
-	public int getType() {
+
+
+	public Integer getType() {
 		return type;
 	}
+
+
 	public void setType(int type) {
 		this.type = type;
 	}
+
+
 	public String getSku() {
 		return sku;
 	}
+
+
 	public void setSku(String sku) {
 		this.sku = sku;
 	}
-	public float getPrice() {
+
+
+	public Float getPrice() {
 		return price;
 	}
+
+
 	public void setPrice(float price) {
 		this.price = price;
 	}
-	public float getDiscount() {
+
+
+	public Float getDiscount() {
 		return discount;
 	}
+
+
 	public void setDiscount(float discount) {
 		this.discount = discount;
 	}
-	public float getQuantily() {
-		return quantily;
+
+
+	public Float getQuantity() {
+		return quantity;
 	}
-	public void setQuantily(float quantily) {
-		this.quantily = quantily;
+
+
+	public void setQuantity(float quantity) {
+		this.quantity = quantity;
 	}
-	public int getShop() {
+
+
+	public Integer getShop() {
 		return shop;
 	}
+
+
 	public void setShop(int shop) {
 		this.shop = shop;
 	}
-	public Timestamp getCreateAt() {
-		return createAt;
+
+
+	public Timestamp getCreatedAt() {
+		return createdAt;
 	}
-	public void setCreateAt(Timestamp createAt) {
-		this.createAt = createAt;
+
+
+	public void setCreatedAt(Timestamp createdAt) {
+		this.createdAt = createdAt;
 	}
-	public Timestamp getUpdateAt() {
-		return updateAt;
+
+
+	public Timestamp getUpdatedAt() {
+		return updatedAt;
 	}
-	public void setUpdateAt(Timestamp updateAt) {
-		this.updateAt = updateAt;
+
+
+	public void setUpdatedAt(Timestamp updatedAt) {
+		this.updatedAt = updatedAt;
 	}
-	public Timestamp getPublisheAt() {
-		return publisheAt;
+
+
+	public Timestamp getPublishedAt() {
+		return publishedAt;
 	}
-	public void setPublisheAt(Timestamp publisheAt) {
-		this.publisheAt = publisheAt;
+
+
+	public void setPublishedAt(Timestamp publishedAt) {
+		this.publishedAt = publishedAt;
 	}
+
+
 	public Timestamp getStartsAt() {
 		return startsAt;
 	}
+
+
 	public void setStartsAt(Timestamp startsAt) {
 		this.startsAt = startsAt;
 	}
+
+
 	public Timestamp getEndsAt() {
 		return endsAt;
 	}
+
+
 	public void setEndsAt(Timestamp endsAt) {
 		this.endsAt = endsAt;
 	}
+
+
 	public String getContent() {
 		return content;
 	}
+
+
 	public void setContent(String content) {
 		this.content = content;
+	}
+
+
+	public String getThumbnail() {
+		return thumbnail;
+	}
+
+
+	public void setThumbnail(String thumbnail) {
+		this.thumbnail = thumbnail;
 	}
 	
 }

@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
 	<div class="container px-4 px-lg-5">
 		<a class="navbar-brand" href="#!">Start Bootstrap</a>
@@ -21,6 +23,7 @@
 						<li><a class="dropdown-item" href="#!">Popular Items</a></li>
 						<li><a class="dropdown-item" href="#!">New Arrivals</a></li>
 					</ul></li>
+					<li class="nav-item"><a class="nav-link" href="<c:url value='#'/>">Đăng nhập</a></li>
 			</ul>
 			<form class="d-flex">
 				<button class="btn btn-outline-dark" type="submit">

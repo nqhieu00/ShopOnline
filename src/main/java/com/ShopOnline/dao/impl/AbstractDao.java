@@ -9,6 +9,7 @@ import java.sql.Timestamp;
 import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ResourceBundle;
 
 import com.ShopOnline.dao.GenericDao;
 import com.ShopOnline.mapper.RowMapper;
@@ -16,11 +17,22 @@ import com.ShopOnline.mapper.RowMapper;
 import java.sql.PreparedStatement;
 
 public class AbstractDao<T> implements GenericDao<T> {
+	
+	ResourceBundle bundle=ResourceBundle.getBundle("db");
 
 	public Connection getConnection() {
-		String url = "jdbc:mysql://localhost:3306/shop", user = "root", password = "123456";
+//		String url = "jdbc:mysql://localhost:3306/shop", user = "root", password = "123456";
+//		try {
+//			Class.forName("com.mysql.jdbc.Driver");
+//			return DriverManager.getConnection(url, user, password);
+//		} catch (ClassNotFoundException | SQLException e) {
+//			// TODO: handle exception
+//			return null;
+//		}
+		
+		String url = bundle.getString("url"), user = bundle.getString("user"), password = bundle.getString("password");
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
+			Class.forName(bundle.getString("driverName"));
 			return DriverManager.getConnection(url, user, password);
 		} catch (ClassNotFoundException | SQLException e) {
 			// TODO: handle exception

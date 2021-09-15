@@ -10,8 +10,9 @@ public class UserModel {
 	private String email;
 	private String mobile;
 	private String passwordHash;
-	private int admin;
-	private int vendor;
+	private String password;
+	private Integer admin;
+	private Integer vendor;
 	private Timestamp registeredAt;
 	private Timestamp lastLogin;
 	private String intro;
@@ -96,7 +97,7 @@ public class UserModel {
 		this.passwordHash = passwordHash;
 	}
 
-	public int getAdmin() {
+	public Integer getAdmin() {
 		return admin;
 	}
 
@@ -104,7 +105,7 @@ public class UserModel {
 		this.admin = admin;
 	}
 
-	public int getVendor() {
+	public Integer getVendor() {
 		return vendor;
 	}
 
@@ -142,6 +143,14 @@ public class UserModel {
 
 	public void setProfile(String profile) {
 		this.profile = profile;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 	
 	

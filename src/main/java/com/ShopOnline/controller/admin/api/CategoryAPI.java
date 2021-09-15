@@ -56,9 +56,9 @@ public class CategoryAPI extends HttpServlet {
 		//Mapper từ file json vào model
 		CategoryModel categoryModel=HttpUtil.of(req.getReader()).toModel(CategoryModel.class);
 		categoryModel=categoryService.update(categoryModel);
-		
 		ObjectMapper objectMapper=new ObjectMapper();
-		objectMapper.writeValue(resp.getOutputStream(), categoryModel);
+		
+		objectMapper.writeValue(resp.getOutputStream(), categoryModel==null ? "{}" :categoryModel );
 	}
 	@Override
 	protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

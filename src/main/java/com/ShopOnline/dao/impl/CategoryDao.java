@@ -4,22 +4,31 @@ import java.util.List;
 
 import com.ShopOnline.dao.ICategoryDao;
 import com.ShopOnline.mapper.CategoryMapper;
+import com.ShopOnline.mapper.CountMapper;
 import com.ShopOnline.model.CategoryModel;
+import com.ShopOnline.paging.Pageable;
 
 public class CategoryDao extends AbstractDao<CategoryModel> implements ICategoryDao {
 
 	@Override
-	public List<CategoryModel> findAll() {
+	public List<CategoryModel> findAll(Pageable pageable) {
 		
-		String query = "SELECT * FROM category";
-		return query(query,new CategoryMapper(), null);
+		StringBuilder query =new StringBuilder("SELECT * FROM category");
+		if(pageable.getSorter()!=null) {
+			query.append(" ORDER BY "+pageable.getSorter().getSortName()+" "+pageable.getSorter().getSortBy());
+		}
+		if(pageable.getPage()!=null && pageable.getOffset()!=null) {
+			query.append(" LIMIT "+pageable.getLimit()+" OFFSET "+pageable.getOffset());
+		}
+		
+		return query(query.toString(),new CategoryMapper());
 	}
 
 	@Override
 	public Long save(CategoryModel categoryModel) {
 		// TODO Auto-generated method stub
 		String query = "INSERT INTO category(parentId,title,metaTitle,slug,content) VALUES(?,?,?,?,?)"; 
-		return insert(query,categoryModel.getParentId(), categoryModel.getTitle(),categoryModel.getMetaTitle(),categoryModel.getMetaTitle(),categoryModel.getContent());
+		return insert(query,categoryModel.getParentId(), categoryModel.getTitle(),categoryModel.getMetaTitle(),categoryModel.getSlug(),categoryModel.getContent());
 	}
 
 	@Override
@@ -49,5 +58,13 @@ public class CategoryDao extends AbstractDao<CategoryModel> implements ICategory
 		
 		
 	}
+
+	@Override
+	public int count() {
+		String query="SELECT COUNT(*) FROM category";
+		return query(query, new CountMapper(), null).get(0);
+	}
+
+
 
 }
